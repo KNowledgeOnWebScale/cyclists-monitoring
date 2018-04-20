@@ -1,0 +1,9 @@
+@prefix cycling-sosa : <http://idlab.ugent.be/cycling-vocab/sosa#> .
+@prefix sensors : <http://idlab.ugent.be/cycling/sensors#> .
+@prefix sosa : <http://www.w3.org/ns/sosa/> .
+@prefix xsd : <http://www.w3.org/2001/XMLSchema#> .
+
+sensors:BikeDevice_1593 a cycling-sosa:CyclingDevice .
+sensors:BikeDevice_1593 cycling-sosa:UUID "1593"^^xsd:string .
+sensors:HeartRateSensor_1593 a cycling-sosa:HeartRateSensor .
+sensors:HeartRateSensor_1593 sosa:isHostedBy sensors:BikeDevice_1593 .

@@ -1,0 +1,51 @@
+REGISTER STREAM getTrainingZone AS 
+
+PREFIX f: <http://larkc.eu/csparql/sparql/jena/ext#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX schema: <http://schema.org/>
+
+PREFIX cycling-profile: <http://idlab.ugent.be/cycling-vocab/profile#>
+PREFIX cycling-sosa: <http://idlab.ugent.be/cycling-vocab/sosa#>
+
+SELECT 
+   ?deviceUUID
+   ?firstName 
+   ?lastName
+   ?gender
+   ?birthDate
+   ?sensor 
+   ?o 
+   ?time 
+   ?tzName
+   ?tzDescription
+   ?tzLB
+   ?tzUB
+FROM STREAM <http://idlab.ugent.be/cycling/stream> [RANGE <RANGE>s STEP <STEP>s]
+FROM <http://localhost:8080/cycling/context/cycling-sensors.rdf>
+FROM <http://localhost:8080/cycling/context/cycling-riders.rdf>
+WHERE  { 
+    ?o sosa:hasResult ?ov .
+    ?o sosa:resultTime ?time .
+    ?sensor sosa:isHostedBy ?platform .
+    ?platform cycling-sosa:UUID ?deviceUUID .
+    ?rider cycling-profile:monitoredBy ?platform .
+    ?rider schema:givenName ?firstName .
+    ?rider schema:familyName ?lastName .
+    ?rider schema:gender ?gender.
+    ?rider schema:birthDate ?birthDate .
+    ?ov a cycling-sosa:HeartRateObservationValue .
+    ?ov schema:value ?value .
+    ?rider cycling-profile:hasTrainingZone ?tzRider .
+    ?tzRider cycling-profile:hasLowerBound ?tzLB .
+    ?tzRider cycling-profile:hasUpperBound ?tzUB .
+    ?tzRider a ?tz .
+    ?tz rdfs:label ?tzName .
+    ?tz rdfs:comment ?tzDescription .
+    ?tz rdfs:subClassOf cycling-profile:TrainingZone .
+    
+    { SELECT ?sensor ( MAX ( f:timestamp (?x, sosa:madeBySensor, ?sensor) ) AS ?ts ) WHERE { ?x sosa:madeBySensor ?sensor . } GROUP BY ?sensor }
+    FILTER ( f:timestamp (?o, sosa:madeBySensor, ?sensor) = ?ts )
+    FILTER ( ?value >= ?tzLB )
+    FILTER ( ?value <= ?tzUB )
+}

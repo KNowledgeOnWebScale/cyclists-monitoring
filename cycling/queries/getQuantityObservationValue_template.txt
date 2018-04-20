@@ -1,0 +1,40 @@
+REGISTER STREAM getQuantityObservationValue AS 
+
+PREFIX f: <http://larkc.eu/csparql/sparql/jena/ext#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX schema: <http://schema.org/>
+
+PREFIX cycling-sosa: <http://idlab.ugent.be/cycling-vocab/sosa#>
+PREFIX cycling-profile: <http://idlab.ugent.be/cycling-vocab/profile#>
+
+SELECT
+   ?deviceUUID
+   ?firstName
+   ?lastName
+   ?gender
+   ?birthDate
+   ?sensor
+   ?o
+   ?time 
+   ?unit 
+   ?value
+FROM STREAM <http://idlab.ugent.be/cycling/stream> [RANGE <RANGE>s STEP <STEP>s]
+FROM <http://localhost:8080/cycling/context/cycling-sensors.rdf>
+FROM <http://localhost:8080/cycling/context/cycling-riders.rdf>
+WHERE  { 
+    ?o sosa:hasResult ?ov .
+    ?o sosa:resultTime ?time .
+    ?sensor sosa:isHostedBy ?platform .
+    ?platform cycling-sosa:UUID ?deviceUUID .
+    ?rider cycling-profile:monitoredBy ?platform .
+    ?rider schema:givenName ?firstName .
+    ?rider schema:familyName ?lastName .
+    ?rider schema:gender ?gender .
+    ?rider schema:birthDate ?birthDate .
+    ?ov a cycling-sosa:QuantityObservationValue .
+    ?ov schema:unitText ?unit .
+    ?ov schema:value ?value .
+    
+    { SELECT ?sensor ( MAX ( f:timestamp (?x, sosa:madeBySensor, ?sensor) ) AS ?ts ) WHERE { ?x sosa:madeBySensor ?sensor . } GROUP BY ?sensor }
+    FILTER ( f:timestamp (?o, sosa:madeBySensor, ?sensor) = ?ts )
+}

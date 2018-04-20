@@ -1,0 +1,426 @@
+@prefix : <http://idlab.ugent.be/cycling-vocab/sosa#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@base <http://idlab.ugent.be/cycling-vocab/sosa#> .
+
+<http://idlab.ugent.be/cycling-vocab/sosa#> rdf:type owl:Ontology ;
+                                            owl:imports <http://www.w3.org/ns/sosa/> .
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#UUID
+:UUID rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdfs:domain :CyclingDevice ;
+      rdfs:range xsd:string .
+
+
+###  http://schema.org/latitude
+schema:latitude rdf:type owl:DatatypeProperty .
+
+
+###  http://schema.org/longitude
+schema:longitude rdf:type owl:DatatypeProperty .
+
+
+###  http://schema.org/unitText
+schema:unitText rdf:type owl:DatatypeProperty .
+
+
+###  http://schema.org/value
+schema:value rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#AltiMeter
+:AltiMeter rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                             owl:allValuesFrom :Altitude
+                           ] ;
+           rdfs:label "Altimeter" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#Altitude
+:Altitude rdf:type owl:Class ;
+          rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+          rdfs:label "Altitude" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#AltitudeObservation
+:AltitudeObservation rdf:type owl:Class ;
+                     rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                       owl:allValuesFrom :AltitudeObservationValue
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                       owl:allValuesFrom :Altitude
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onClass [ rdf:type owl:Class ;
+                                                     owl:unionOf ( :AltiMeter
+                                                                   :GPSSensor
+                                                                 )
+                                                   ]
+                                     ] .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#AltitudeObservationValue
+:AltitudeObservationValue rdf:type owl:Class ;
+                          rdfs:subClassOf :QuantityObservationValue .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#Cadence
+:Cadence rdf:type owl:Class ;
+         rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+         rdfs:label "Cadence" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#CadenceObservation
+:CadenceObservation rdf:type owl:Class ;
+                    rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                      owl:allValuesFrom :CadenceObservationValue
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                      owl:allValuesFrom :Cadence
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :CadenceSensor
+                                    ] .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#CadenceObservationValue
+:CadenceObservationValue rdf:type owl:Class ;
+                         rdfs:subClassOf :QuantityObservationValue .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#CadenceSensor
+:CadenceSensor rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                 owl:allValuesFrom :Cadence
+                               ] ;
+               rdfs:label "Cadence sensor" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#CyclingDevice
+:CyclingDevice rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.w3.org/ns/sosa/Platform> ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :UUID ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:string
+                              ] .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#GPSSensor
+:GPSSensor rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                             owl:allValuesFrom [ rdf:type owl:Class ;
+                                                 owl:unionOf ( :Altitude
+                                                               :Location
+                                                             )
+                                               ]
+                           ] ;
+           rdfs:label "GPS sensor" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#HeartRate
+:HeartRate rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+           rdfs:label "Heart rate" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#HeartRateObservation
+:HeartRateObservation rdf:type owl:Class ;
+                      rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                        owl:allValuesFrom :HeartRateObservationValue
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                        owl:allValuesFrom :HeartRate
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass :HeartRateSensor
+                                      ] .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#HeartRateObservationValue
+:HeartRateObservationValue rdf:type owl:Class ;
+                           rdfs:subClassOf :QuantityObservationValue .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#HeartRateSensor
+:HeartRateSensor rdf:type owl:Class ;
+                 rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                   owl:allValuesFrom :HeartRate
+                                 ] ;
+                 rdfs:label "Heart rate sensor" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#Location
+:Location rdf:type owl:Class ;
+          rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+          rdfs:label "Location" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#LocationObservation
+:LocationObservation rdf:type owl:Class ;
+                     rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                       owl:allValuesFrom :LocationObservationValue
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                       owl:allValuesFrom :Location
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onClass :GPSSensor
+                                     ] .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#LocationObservationValue
+:LocationObservationValue rdf:type owl:Class ;
+                          rdfs:subClassOf :ObservationValue ,
+                                          schema:GeoCoordinates ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty schema:latitude ;
+                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                            owl:onDataRange xsd:float
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty schema:longitude ;
+                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                            owl:onDataRange xsd:float
+                                          ] ;
+                          owl:disjointWith :QuantityObservationValue .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#ObservationValue
+:ObservationValue rdf:type owl:Class ;
+                  rdfs:subClassOf <http://www.w3.org/ns/sosa/Result> .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#Power
+:Power rdf:type owl:Class ;
+       rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+       rdfs:label "Power" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#PowerMeter
+:PowerMeter rdf:type owl:Class ;
+            rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                              owl:allValuesFrom :Power
+                            ] ;
+            rdfs:label "Power meter" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#PowerObservation
+:PowerObservation rdf:type owl:Class ;
+                  rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                    owl:allValuesFrom :PowerObservationValue
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                    owl:allValuesFrom :Power
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :PowerMeter
+                                  ] .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#PowerObservationValue
+:PowerObservationValue rdf:type owl:Class ;
+                       rdfs:subClassOf :QuantityObservationValue .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#QuantityObservationValue
+:QuantityObservationValue rdf:type owl:Class ;
+                          rdfs:subClassOf :ObservationValue ,
+                                          schema:QuantitativeValue ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty schema:unitText ;
+                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                            owl:onDataRange xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty schema:value ;
+                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                            owl:onDataRange xsd:float
+                                          ] .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#Speed
+:Speed rdf:type owl:Class ;
+       rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+       rdfs:label "Speed" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#SpeedObservation
+:SpeedObservation rdf:type owl:Class ;
+                  rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                    owl:allValuesFrom :SpeedObservationValue
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                    owl:allValuesFrom :Speed
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :SpeedSensor
+                                  ] .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#SpeedObservationValue
+:SpeedObservationValue rdf:type owl:Class ;
+                       rdfs:subClassOf :QuantityObservationValue .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#SpeedSensor
+:SpeedSensor rdf:type owl:Class ;
+             rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                               owl:allValuesFrom :Speed
+                             ] ;
+             rdfs:label "Speed sensor" .
+
+
+###  http://schema.org/GeoCoordinates
+schema:GeoCoordinates rdf:type owl:Class .
+
+
+###  http://schema.org/QuantitativeValue
+schema:QuantitativeValue rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/sosa/ObservableProperty
+<http://www.w3.org/ns/sosa/ObservableProperty> rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.w3.org/ns/sosa/isObservedBy> ;
+                                                                 owl:allValuesFrom <http://www.w3.org/ns/sosa/Sensor>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty [ owl:inverseOf <http://www.w3.org/ns/sosa/observedProperty>
+                                                                                ] ;
+                                                                 owl:allValuesFrom <http://www.w3.org/ns/sosa/Observation>
+                                                               ] .
+
+
+###  http://www.w3.org/ns/sosa/Observation
+<http://www.w3.org/ns/sosa/Observation> rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                                          owl:allValuesFrom <http://www.w3.org/ns/sosa/Result>
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                                          owl:allValuesFrom <http://www.w3.org/ns/sosa/Sensor>
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                                          owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                                          owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <http://www.w3.org/ns/sosa/resultTime> ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onDataRange xsd:dateTime
+                                                        ] .
+
+
+###  http://www.w3.org/ns/sosa/Sensor
+<http://www.w3.org/ns/sosa/Sensor> rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://www.w3.org/ns/sosa/isHostedBy> ;
+                                                     owl:allValuesFrom <http://www.w3.org/ns/sosa/Platform>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
+                                                     owl:allValuesFrom <http://www.w3.org/ns/sosa/Observation>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                                     owl:allValuesFrom <http://www.w3.org/ns/sosa/ObservableProperty>
+                                                   ] .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#_Altitude
+:_Altitude rdf:type owl:NamedIndividual ,
+                    :Altitude .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#_Cadence
+:_Cadence rdf:type owl:NamedIndividual ,
+                   :Cadence .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#_HeartRate
+:_HeartRate rdf:type owl:NamedIndividual ,
+                     :HeartRate .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#_Location
+:_Location rdf:type owl:NamedIndividual ,
+                    :Location .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#_Power
+:_Power rdf:type owl:NamedIndividual ,
+                 :Power .
+
+
+###  http://idlab.ugent.be/cycling-vocab/sosa#_Speed
+:_Speed rdf:type owl:NamedIndividual ,
+                 :Speed .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi

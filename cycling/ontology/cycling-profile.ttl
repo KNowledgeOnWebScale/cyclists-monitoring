@@ -1,0 +1,212 @@
+@prefix : <http://idlab.ugent.be/cycling-vocab/profile#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@prefix cycling-sosa: <http://idlab.ugent.be/cycling-vocab/sosa#> .
+@base <http://idlab.ugent.be/cycling-vocab/profile#> .
+
+<http://idlab.ugent.be/cycling-vocab/profile#> rdf:type owl:Ontology ;
+                                               owl:imports cycling-sosa: .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://idlab.ugent.be/cycling-vocab/profile#hasPhysicalCharacteristics
+:hasPhysicalCharacteristics rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf owl:topObjectProperty ;
+                            rdfs:domain :Athlete ;
+                            rdfs:range :PhysiologicalParameter .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#hasThreshold
+:hasThreshold rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain :Athlete ;
+              rdfs:range :Threshold .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#hasTrainingZone
+:hasTrainingZone rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain :Athlete ;
+                 rdfs:range :TrainingZone .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#monitoredBy
+:monitoredBy rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :Athlete ;
+             rdfs:range cycling-sosa:CyclingDevice .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://idlab.ugent.be/cycling-vocab/profile#hasLowerBound
+:hasLowerBound rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain :TrainingZone ;
+               rdfs:range xsd:float .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#hasUpperBound
+:hasUpperBound rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain :TrainingZone ;
+               rdfs:range xsd:float .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://idlab.ugent.be/cycling-vocab/profile#AerobicThreshold
+:AerobicThreshold rdf:type owl:Class ;
+                  rdfs:subClassOf :Threshold ;
+                  rdfs:label "Aerobic Threshold" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#Anaerobic
+:Anaerobic rdf:type owl:Class ;
+           rdfs:subClassOf :TrainingZone ;
+           rdfs:comment "You are cycling at maximum intensity. This is the zone for anaerobic training stimuli, where you are training 'in the red zone'. Production of lactic acid is high, and recovery can take up to 48-72 hours." ;
+           rdfs:label "Anaerobic" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#AnaerobicThreshold
+:AnaerobicThreshold rdf:type owl:Class ;
+                    rdfs:subClassOf :Threshold ;
+                    rdfs:label "Anaerobic Threshold" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#Athlete
+:Athlete rdf:type owl:Class ;
+         rdfs:subClassOf schema:Person .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#BlockTraining
+:BlockTraining rdf:type owl:Class ;
+               rdfs:subClassOf :TrainingZone ;
+               rdfs:comment "You are cycling in between your aerobic and anaerobic threshold. The effort can be maintained for quite a long time, but only if sufficient energy reserves (carbohydrates) are available. Block training is quite hard." ;
+               rdfs:label "Block Training" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#Cyclist
+:Cyclist rdf:type owl:Class ;
+         rdfs:subClassOf :Athlete .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#ExtensiveEndurance
+:ExtensiveEndurance rdf:type owl:Class ;
+                    rdfs:subClassOf :TrainingZone ;
+                    rdfs:comment "You are cycling at an intensity at which you finish off shorter endurance training (maximum 4 hours). You are cycling at a higher tempo, stimulating your endurance (stamina). Your fat burning is already heavily in action." ;
+                    rdfs:label "Extensive Endurance" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#ExtensiveInterval
+:ExtensiveInterval rdf:type owl:Class ;
+                   rdfs:subClassOf :TrainingZone ;
+                   rdfs:comment "You are cycling at an intensity which is just below the muscle acidification threshold. This can be sustained for at most 30 to 60 minutes. This training zone is very race specific and is typically searched for in the run-up to the racing season." ;
+                   rdfs:label "Extensive Interval" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#FunctionalThresholdPower
+:FunctionalThresholdPower rdf:type owl:Class ;
+                          rdfs:subClassOf :Threshold ;
+                          rdfs:comment "Functional Threshold Power (FTP) represents an athlete's ability to sustain the highest possible power output over 45 to 60 minutes, depending on whether he is a trained athlete or not. As a result 95% of the 20 minute average power is used to determine FTP." ;
+                          rdfs:label "Functional Threshold Power (FTP)" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#LactateThreshold
+:LactateThreshold rdf:type owl:Class ;
+                  rdfs:subClassOf :Threshold ;
+                  rdfs:comment "When the lactate volume in the blood reaches 4mmol/L (“millimoles per liter”—a tiny amount), the athlete is assumed to be at LT." ;
+                  rdfs:label "Lactate Threshold (LT)" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#LongSlowDistance
+:LongSlowDistance rdf:type owl:Class ;
+                  rdfs:subClassOf :TrainingZone ;
+                  rdfs:comment "You are cycling at an intensity at which you finish off (very) long and calm endurance training (of 5 hours and more). It is about long distance and slow tempo. This type of training stimulates the aerobic performance capacity and helps to improve your basic condition." ;
+                  rdfs:label "Long Slow Distance (LSD)" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#MaximumHeartRate
+:MaximumHeartRate rdf:type owl:Class ;
+                  rdfs:subClassOf :Threshold ;
+                  rdfs:label "Maximum Heart Rate" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#PhysiologicalParameter
+:PhysiologicalParameter rdf:type owl:Class ;
+                        rdfs:subClassOf schema:QuantitativeValue ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty schema:value ;
+                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onDataRange xsd:float
+                                        ] .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#Recovery
+:Recovery rdf:type owl:Class ;
+          rdfs:subClassOf :TrainingZone ;
+          rdfs:comment "In recovery, the intensity of the effort is very low. The only goal of cycling at this intensity is to recover from previous efforts done on training or in a cycling race." ;
+          rdfs:label "Recovery" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#RestingHeartRate
+:RestingHeartRate rdf:type owl:Class ;
+                  rdfs:subClassOf :Threshold ;
+                  rdfs:label "Resting Heart Rate" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#Runner
+:Runner rdf:type owl:Class ;
+        rdfs:subClassOf :Athlete .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#TempoEndurance
+:TempoEndurance rdf:type owl:Class ;
+                rdfs:subClassOf :TrainingZone ;
+                rdfs:comment "You are cycling at an intensity at which your fat metabolism is fully in action. Energy provision is increasing due to the combustion of sugars. Tempo endurance training is continuous in time, but is typically perceived as being somewhat hard." ;
+                rdfs:label "Tempo Endurance" .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#Threshold
+:Threshold rdf:type owl:Class ;
+           rdfs:subClassOf schema:QuantitativeValue ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty schema:value ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:float
+                           ] .
+
+
+###  http://idlab.ugent.be/cycling-vocab/profile#TrainingZone
+:TrainingZone rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasLowerBound ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:float
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasUpperBound ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:float
+                              ] .
+
+
+###  http://schema.org/Person
+schema:Person rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
