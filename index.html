@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Virtual Cycling Training App Demo - ESWC 2019</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/custom-style.css" media="screen">
+</head>
+
+<body>
+    <section class="page-header">
+        <h1 class="project-name">Virtual Cycling Training App Demo</h1>
+        <h2 class="project-tagline">A virtual cycling training app demonstrating a solution that gives personalized real-time cycling feedback to amateur cyclists during training on a tablet, using a stream reasoning system running on a Raspberry Pi.</h2>
+        <a href="https://github.com/IBCNServices/cyclists-monitoring" class="btn">View GitHub repository</a>
+        <a href="https://github.com/IBCNServices/cyclists-monitoring/tree/master/virtual-training-app-demo" class="btn">View demo data</a>
+    </section>
+
+    <section class="main-content">
+        <p>This demo is part of the paper 'Personalized real-time cycling feedback during amateur training: a virtual training demo'. This paper has been submitted to the demo track of the <a href="https://2019.eswc-conferences.org/">Extended Semantic Web Conference (ESWC) 2019</a> and is currently under review.</p>
+        
+        <h2>
+            <a id="demo-description" class="anchor" href="#demo-description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo description</h2>
+        <p>The goal of the designed application is to let the demo user execute a virtual cycling training. As it is virtual, the cycling part itself is simulated by the user using the tablet's touch screen. Virtually, the demo user is a rider equipped with a heart rate monitor, riding on a bike equipped with a speed sensor. The riders needs to execute a training on a specific track. Each segment of this track has a targeted heart rate training zone. The goal of the training is to ride in the targeted zone as much as possible. Using the designed solution, the rider receives feedback on his speed, heart rate and current heart rate training zone. This feedback is visually shown in the app.</p>
+        <p>Going through the demo, the user goes through the following phases:</p>
+        <ol>
+            <li>
+                <strong>Personalization</strong>: First, the user receives a set of questions about his profile, to be able to calculate the correct personalized boundaries between his heart rate training zones.</li>
+            <li>
+                <strong>Virtual training</strong>: Next, the user executes the virtual training, receiving real-time personalized feedback to help him to stay in the targeted training zone as much as possible.</li>
+            <li>
+                <strong>Data insights</strong>: After the training, the user gets to see some data insights about his performance with respect to the heart rate training zones.</li>
+        </ol>
+        
+        <h2>
+            <a id="demo-video" class="anchor" href="#demo-video" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo video</h2>
+        <p>Below, you can find a video of one full execution of the demo, going through the different phases explained above and in the paper.</p>
+        <video controls width="500">
+            <source src="demo_video.mp4" type="video/mp4">
+        </video>
+        
+        <h2>
+            <a id="technical-details" class="anchor" href="#technical-details" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Technical details</h2>
+        <p>The technical set-up of the training feedback system consists of a C-SPARQL RDF stream processing engine running on a Raspberry Pi. Different continuous queries are registered to this system, continuously processing the sensor data in real-time. The query results are then sent wirelessly to the tablet app and visualized as feedback to the rider.</p>
+        <p>The inputs of the C-SPARQL engine are:</p>
+        <ul>
+            <li>A cycling ontology designed to support personalized cycling feedback (available on <a href="https://github.com/IBCNServices/cyclists-monitoring/tree/master/virtual-training-app-demo/data/ontology">this link</a>).</li>
+            <li>The profile of the rider and context data about the sensors connected to the rider and his bike (available on <a href="https://github.com/IBCNServices/cyclists-monitoring/tree/master/virtual-training-app-demo/data/context">this link</a>).</li>
+            <li>The sensor data streams, containing the continuously produced heart rate &amp; speed sensor observations.</li>
+        </ul>
+        <p>Two continuous queries are registered to the C-SPARQL engine (available on <a href="https://github.com/IBCNServices/cyclists-monitoring/tree/master/virtual-training-app-demo/queries">this link</a>):</p>
+        <ul>
+            <li>
+                <code>getQuantityObservationValue</code> to retrieve quantity sensor observations (including speed).</li>
+            <li>
+                <code>getTrainingZone</code> to retrieve the personalized heart rate training zone corresponding to the rider's heart rate.</li>
+        </ul>
+        
+        <h2>
+            <a id="related-research" class="anchor" href="#related-research" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Related research</h2>
+        <p>In April 2018, the paper '<a href="https://dl.acm.org/citation.cfm?doid=3184558.3191648">Personalized Real-Time Monitoring of Amateur Cyclists on Low-End Devices: Proof-of-Concept &amp; Performance Evaluation</a>' was presented at the <a href="http://www.webstreams.eu/wsp/2018/">Web Stream Processing workshop</a> at <a href="https://www2018.thewebconf.org/">The Web Conference 2018</a>. The real-time training feedback solution used for this demo builds further on the proof-of-concept presented in this paper.</p>
+        <p>The research on personalized real-time cycling feedback for amateurs on low-end devices is largely conducted as a part of the imec ICON project <a href="https://www.imec-int.com/en/what-we-offer/research-portfolio/conamo">CONAMO</a> (CONtinuous Athlete MOnitoring). CONAMO is funded by imec, VLAIO, Rombit, Energy Lab and VRT.</p>
+        
+        <h2>
+            <a id="contact" class="anchor" href="#contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact</h2>
+        <p>For more information about this research, you could do the following:</p>
+        <ul>
+            <li>Read the paper about this demo (currently not yet available as this paper is still under review).</li>
+            <li>Check the related research on the <a href="https://github.com/IBCNServices/cyclists-monitoring">general GitHub repository</a>.</li>
+            <li>Contact us by sending an email to <a href="mailto:mrdbrouw.DeBrouwer@UGent.be">mrdbrouw.DeBrouwer@UGent.be</a>.</li>
+        </ul>
+
+        <footer class="site-footer">
+            <span class="site-footer-owner">This research is executed at <a href="http://idlab.technology">IDLab</a> by people from <a href="https://www.ugent.be/en">Ghent University</a> – <a href="https://www.imec-int.com/en/home">imec</a>.<br>The demo &amp; demo page are created and maintained by <a href="https://github.com/mrdbrouw">Mathias De Brouwer</a>.</span>
+        </footer>
+
+    </section>
+
+</body>
+
+</html>
