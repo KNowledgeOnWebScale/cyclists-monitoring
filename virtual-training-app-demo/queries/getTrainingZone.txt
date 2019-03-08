@@ -1,0 +1,57 @@
+REGISTER QUERY getTrainingZone AS 
+
+PREFIX f: <http://larkc.eu/csparql/sparql/jena/ext#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+PREFIX conamo-profile: <http://idlab.ugent.be/conamo-vocab/profile#>
+PREFIX conamo-sosa: <http://idlab.ugent.be/conamo-vocab/sosa#>
+
+SELECT
+    ?uuid
+    ?firstName
+    ?lastName
+    ?time
+    ?tzName
+FROM STREAM <http://idlab.ugent.be/conamo/stream> [RANGE 5s STEP 1s]
+FROM <http://localhost:8177/conamo-riders.rdf>
+FROM <http://localhost:8177/conamo-sensors.rdf>
+WHERE { 
+    ?o sosa:hasResult ?ov .
+    ?o sosa:resultTime ?time .
+    
+    ?ov rdf:type conamo-sosa:HeartRateObservationValue .
+    ?ov schema:value ?heartRate .
+    
+    {
+        SELECT ?sensor ( MAX ( f:timestamp (?x, sosa:madeBySensor, ?sensor) ) AS ?ts )
+        WHERE {
+            ?x sosa:madeBySensor ?sensor .
+            ?x sosa:hasResult ?xv .
+            ?xv rdf:type conamo-sosa:HeartRateObservationValue .
+        }
+        GROUP BY ?sensor
+    }
+    
+    ?sensor sosa:isHostedBy ?device .
+    ?device conamo-sosa:UUID ?uuid .
+    ?athlete conamo-profile:monitoredBy ?device .
+    ?athlete schema:givenName ?firstName .
+    ?athlete schema:familyName ?lastName .
+    
+    FILTER ( f:timestamp (?o, sosa:madeBySensor, ?sensor) = ?ts )
+    
+    ?athlete conamo-profile:hasThreshold ?thLB .
+	?athlete conamo-profile:hasThreshold ?thUB .
+    ?thLB conamo-profile:isLowerBoundOf ?tzAthlete .
+	?thUB conamo-profile:isUpperBoundOf ?tzAthlete .
+    ?thLB schema:value ?thValueLB .
+	?thUB schema:value ?thValueUB .
+    ?tzAthlete rdf:type ?tz .
+    ?tz rdfs:label ?tzName .
+    
+    FILTER ( ?heartRate > ?thValueLB )
+    FILTER ( ?heartRate <= ?thValueUB )
+}

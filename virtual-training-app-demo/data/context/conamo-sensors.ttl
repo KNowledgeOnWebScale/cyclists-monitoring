@@ -1,0 +1,21 @@
+
+@prefix conamo-sosa : <http://idlab.ugent.be/conamo-vocab/sosa#> .
+@prefix conamo-profile : <http://idlab.ugent.be/conamo-vocab/profile#> .
+@prefix riders : <http://idlab.ugent.be/conamo/riders#> .
+@prefix sensors : <http://idlab.ugent.be/conamo/sensors#> .
+
+@prefix schema : <http://schema.org/> .
+@prefix sosa : <http://www.w3.org/ns/sosa/> .
+@prefix xsd : <http://www.w3.org/2001/XMLSchema#> .
+
+sensors:BikeDevice_2692 a conamo-sosa:ConamoDevice .
+sensors:BikeDevice_2692 conamo-sosa:UUID "2692"^^xsd:string .
+sensors:HeartRateSensor_2692 a conamo-sosa:HeartRateSensor .
+sensors:HeartRateSensor_2692 sosa:isHostedBy sensors:BikeDevice_2692 .
+sensors:HeartRateSensor_2692 sosa:observes conamo-sosa:_HeartRate .
+sensors:SpeedSensor_2692 a conamo-sosa:SpeedSensor .
+sensors:SpeedSensor_2692 sosa:isHostedBy sensors:BikeDevice_2692 .
+sensors:SpeedSensor_2692 sosa:observes conamo-sosa:_Speed .
+sensors:GPSSensor_2692 a conamo-sosa:GPSSensor .
+sensors:GPSSensor_2692 sosa:isHostedBy sensors:BikeDevice_2692 .
+sensors:GPSSensor_2692 sosa:observes conamo-sosa:_Location .

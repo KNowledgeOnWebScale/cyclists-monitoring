@@ -1,0 +1,45 @@
+REGISTER QUERY getQuantityObservationValue AS 
+
+PREFIX f: <http://larkc.eu/csparql/sparql/jena/ext#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX schema: <http://schema.org/>
+
+PREFIX conamo-sosa: <http://idlab.ugent.be/conamo-vocab/sosa#>
+PREFIX conamo-profile: <http://idlab.ugent.be/conamo-vocab/profile#>
+
+SELECT
+    ?uuid
+    ?firstName
+    ?lastName
+    ?sensor
+    ?time
+    ?value
+FROM STREAM <http://idlab.ugent.be/conamo/stream> [RANGE 5s STEP 1s]
+FROM <http://localhost:8177/conamo-riders.rdf>
+FROM <http://localhost:8177/conamo-sensors.rdf>
+WHERE { 
+    ?o sosa:hasResult ?ov .
+    ?o sosa:resultTime ?time .
+    
+    ?ov rdf:type conamo-sosa:QuantityObservationValue .
+    ?ov schema:value ?value .
+    
+    {
+        SELECT ?sensor ( MAX ( f:timestamp (?x, sosa:madeBySensor, ?sensor) ) AS ?ts ) 
+        WHERE {
+            ?x sosa:madeBySensor ?sensor .
+            ?x sosa:hasResult ?xv .
+            ?xv rdf:type conamo-sosa:QuantityObservationValue .
+        }
+        GROUP BY ?sensor
+    }
+    
+    ?sensor sosa:isHostedBy ?device .
+    ?device conamo-sosa:UUID ?uuid .
+    ?athlete conamo-profile:monitoredBy ?device .
+    ?athlete schema:givenName ?firstName .
+    ?athlete schema:familyName ?lastName .
+    
+    FILTER ( f:timestamp (?o, sosa:madeBySensor, ?sensor) = ?ts )
+}
