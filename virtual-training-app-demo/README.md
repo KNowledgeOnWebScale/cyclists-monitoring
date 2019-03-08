@@ -1,6 +1,6 @@
 # Virtual Training App Demo
 
-This demo is about v virtual cycling training app demonstrating a solution that gives personalized real-time cycling feedback to amateur cyclists during training on a tablet, using a stream reasoning system running on a Raspberry Pi.
+This demo is about a virtual cycling training app demonstrating a solution that gives personalized real-time cycling feedback to amateur cyclists during training on a tablet, using a stream reasoning system running on a Raspberry Pi.
 
 Please visit the [demo page](https://ibcnservices.github.io/cyclists-monitoring/) for more information about this demo, including a video of the full demo.
 
