@@ -1,4 +1,4 @@
-@prefix : <http://idlab.ugent.be/conamo-vocab/sosa#> .
+@prefix : <http://idlab.ugent.be/cycling-vocab/sosa#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -9,19 +9,19 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix terms: <http://purl.org/dc/terms/> .
 @prefix schema: <http://schema.org/> .
-@base <http://idlab.ugent.be/conamo-vocab/sosa#> .
+@base <http://idlab.ugent.be/cycling-vocab/sosa#> .
 
-<http://idlab.ugent.be/conamo-vocab/sosa#> rdf:type owl:Ontology ;
+<http://idlab.ugent.be/cycling-vocab/sosa#> rdf:type owl:Ontology ;
                                             owl:imports <http://www.w3.org/ns/sosa/> .
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#UUID
+###  http://idlab.ugent.be/cycling-vocab/sosa#UUID
 :UUID rdf:type owl:DatatypeProperty ;
       rdfs:subPropertyOf owl:topDataProperty ;
-      rdfs:domain :ConamoDevice ;
+      rdfs:domain :CyclingDevice ;
       rdfs:range xsd:string .
 
 
@@ -45,7 +45,7 @@ schema:value rdf:type owl:DatatypeProperty .
 #    Classes
 #################################################################
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#AltiMeter
+###  http://idlab.ugent.be/cycling-vocab/sosa#AltiMeter
 :AltiMeter rdf:type owl:Class ;
            rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
                            [ rdf:type owl:Restriction ;
@@ -55,13 +55,13 @@ schema:value rdf:type owl:DatatypeProperty .
            rdfs:label "Altimeter" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#Altitude
+###  http://idlab.ugent.be/cycling-vocab/sosa#Altitude
 :Altitude rdf:type owl:Class ;
           rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
           rdfs:label "Altitude" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#AltitudeObservation
+###  http://idlab.ugent.be/cycling-vocab/sosa#AltitudeObservation
 :AltitudeObservation rdf:type owl:Class ;
                      rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
                                      [ rdf:type owl:Restriction ;
@@ -83,18 +83,18 @@ schema:value rdf:type owl:DatatypeProperty .
                                      ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#AltitudeObservationValue
+###  http://idlab.ugent.be/cycling-vocab/sosa#AltitudeObservationValue
 :AltitudeObservationValue rdf:type owl:Class ;
                           rdfs:subClassOf :QuantityObservationValue .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#Cadence
+###  http://idlab.ugent.be/cycling-vocab/sosa#Cadence
 :Cadence rdf:type owl:Class ;
          rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
          rdfs:label "Cadence" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#CadenceObservation
+###  http://idlab.ugent.be/cycling-vocab/sosa#CadenceObservation
 :CadenceObservation rdf:type owl:Class ;
                     rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
                                     [ rdf:type owl:Restriction ;
@@ -112,12 +112,12 @@ schema:value rdf:type owl:DatatypeProperty .
                                     ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#CadenceObservationValue
+###  http://idlab.ugent.be/cycling-vocab/sosa#CadenceObservationValue
 :CadenceObservationValue rdf:type owl:Class ;
                          rdfs:subClassOf :QuantityObservationValue .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#CadenceSensor
+###  http://idlab.ugent.be/cycling-vocab/sosa#CadenceSensor
 :CadenceSensor rdf:type owl:Class ;
                rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
                                [ rdf:type owl:Restriction ;
@@ -127,8 +127,8 @@ schema:value rdf:type owl:DatatypeProperty .
                rdfs:label "Cadence sensor" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#ConamoDevice
-:ConamoDevice rdf:type owl:Class ;
+###  http://idlab.ugent.be/cycling-vocab/sosa#CyclingDevice
+:CyclingDevice rdf:type owl:Class ;
               rdfs:subClassOf <http://www.w3.org/ns/sosa/Platform> ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :UUID ;
@@ -137,7 +137,7 @@ schema:value rdf:type owl:DatatypeProperty .
                               ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#GPSSensor
+###  http://idlab.ugent.be/cycling-vocab/sosa#GPSSensor
 :GPSSensor rdf:type owl:Class ;
            rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
                            [ rdf:type owl:Restriction ;
@@ -151,13 +151,13 @@ schema:value rdf:type owl:DatatypeProperty .
            rdfs:label "GPS sensor" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#HeartRate
+###  http://idlab.ugent.be/cycling-vocab/sosa#HeartRate
 :HeartRate rdf:type owl:Class ;
            rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
            rdfs:label "Heart rate" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#HeartRateObservation
+###  http://idlab.ugent.be/cycling-vocab/sosa#HeartRateObservation
 :HeartRateObservation rdf:type owl:Class ;
                       rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
                                       [ rdf:type owl:Restriction ;
@@ -175,12 +175,12 @@ schema:value rdf:type owl:DatatypeProperty .
                                       ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#HeartRateObservationValue
+###  http://idlab.ugent.be/cycling-vocab/sosa#HeartRateObservationValue
 :HeartRateObservationValue rdf:type owl:Class ;
                            rdfs:subClassOf :QuantityObservationValue .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#HeartRateSensor
+###  http://idlab.ugent.be/cycling-vocab/sosa#HeartRateSensor
 :HeartRateSensor rdf:type owl:Class ;
                  rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
                                  [ rdf:type owl:Restriction ;
@@ -190,13 +190,13 @@ schema:value rdf:type owl:DatatypeProperty .
                  rdfs:label "Heart rate sensor" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#Location
+###  http://idlab.ugent.be/cycling-vocab/sosa#Location
 :Location rdf:type owl:Class ;
           rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
           rdfs:label "Location" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#LocationObservation
+###  http://idlab.ugent.be/cycling-vocab/sosa#LocationObservation
 :LocationObservation rdf:type owl:Class ;
                      rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
                                      [ rdf:type owl:Restriction ;
@@ -214,7 +214,7 @@ schema:value rdf:type owl:DatatypeProperty .
                                      ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#LocationObservationValue
+###  http://idlab.ugent.be/cycling-vocab/sosa#LocationObservationValue
 :LocationObservationValue rdf:type owl:Class ;
                           rdfs:subClassOf :ObservationValue ,
                                           [ rdf:type owl:Restriction ;
@@ -230,18 +230,18 @@ schema:value rdf:type owl:DatatypeProperty .
                           owl:disjointWith :QuantityObservationValue .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#ObservationValue
+###  http://idlab.ugent.be/cycling-vocab/sosa#ObservationValue
 :ObservationValue rdf:type owl:Class ;
                   rdfs:subClassOf <http://www.w3.org/ns/sosa/Result> .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#Power
+###  http://idlab.ugent.be/cycling-vocab/sosa#Power
 :Power rdf:type owl:Class ;
        rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
        rdfs:label "Power" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#PowerMeter
+###  http://idlab.ugent.be/cycling-vocab/sosa#PowerMeter
 :PowerMeter rdf:type owl:Class ;
             rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
                             [ rdf:type owl:Restriction ;
@@ -251,7 +251,7 @@ schema:value rdf:type owl:DatatypeProperty .
             rdfs:label "Power meter" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#PowerObservation
+###  http://idlab.ugent.be/cycling-vocab/sosa#PowerObservation
 :PowerObservation rdf:type owl:Class ;
                   rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
                                   [ rdf:type owl:Restriction ;
@@ -269,12 +269,12 @@ schema:value rdf:type owl:DatatypeProperty .
                                   ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#PowerObservationValue
+###  http://idlab.ugent.be/cycling-vocab/sosa#PowerObservationValue
 :PowerObservationValue rdf:type owl:Class ;
                        rdfs:subClassOf :QuantityObservationValue .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#QuantityObservationValue
+###  http://idlab.ugent.be/cycling-vocab/sosa#QuantityObservationValue
 :QuantityObservationValue rdf:type owl:Class ;
                           rdfs:subClassOf :ObservationValue ,
                                           [ rdf:type owl:Restriction ;
@@ -289,13 +289,13 @@ schema:value rdf:type owl:DatatypeProperty .
                                           ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#Speed
+###  http://idlab.ugent.be/cycling-vocab/sosa#Speed
 :Speed rdf:type owl:Class ;
        rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
        rdfs:label "Speed" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#SpeedObservation
+###  http://idlab.ugent.be/cycling-vocab/sosa#SpeedObservation
 :SpeedObservation rdf:type owl:Class ;
                   rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
                                   [ rdf:type owl:Restriction ;
@@ -313,12 +313,12 @@ schema:value rdf:type owl:DatatypeProperty .
                                   ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#SpeedObservationValue
+###  http://idlab.ugent.be/cycling-vocab/sosa#SpeedObservationValue
 :SpeedObservationValue rdf:type owl:Class ;
                        rdfs:subClassOf :QuantityObservationValue .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#SpeedSensor
+###  http://idlab.ugent.be/cycling-vocab/sosa#SpeedSensor
 :SpeedSensor rdf:type owl:Class ;
              rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
                              [ rdf:type owl:Restriction ;
@@ -383,32 +383,32 @@ schema:value rdf:type owl:DatatypeProperty .
 #    Individuals
 #################################################################
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#_Altitude
+###  http://idlab.ugent.be/cycling-vocab/sosa#_Altitude
 :_Altitude rdf:type owl:NamedIndividual ,
                     :Altitude .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#_Cadence
+###  http://idlab.ugent.be/cycling-vocab/sosa#_Cadence
 :_Cadence rdf:type owl:NamedIndividual ,
                    :Cadence .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#_HeartRate
+###  http://idlab.ugent.be/cycling-vocab/sosa#_HeartRate
 :_HeartRate rdf:type owl:NamedIndividual ,
                      :HeartRate .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#_Location
+###  http://idlab.ugent.be/cycling-vocab/sosa#_Location
 :_Location rdf:type owl:NamedIndividual ,
                     :Location .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#_Power
+###  http://idlab.ugent.be/cycling-vocab/sosa#_Power
 :_Power rdf:type owl:NamedIndividual ,
                  :Power .
 
 
-###  http://idlab.ugent.be/conamo-vocab/sosa#_Speed
+###  http://idlab.ugent.be/cycling-vocab/sosa#_Speed
 :_Speed rdf:type owl:NamedIndividual ,
                  :Speed .
 

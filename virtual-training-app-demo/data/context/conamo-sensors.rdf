@@ -1,35 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF
-	xmlns:conamo-sosa="http://idlab.ugent.be/conamo-vocab/sosa#"
-	xmlns:conamo-profile="http://idlab.ugent.be/conamo-vocab/profile#"
-	xmlns:riders="http://idlab.ugent.be/conamo/riders#"
-	xmlns:sensors="http://idlab.ugent.be/conamo/sensors#"
+	xmlns:cycling-sosa="http://idlab.ugent.be/cycling-vocab/sosa#"
+	xmlns:cycling-profile="http://idlab.ugent.be/cycling-vocab/profile#"
+	xmlns:riders="http://idlab.ugent.be/cycling/riders#"
+	xmlns:sensors="http://idlab.ugent.be/cycling/sensors#"
 	xmlns:schema="http://schema.org/"
 	xmlns:sosa="http://www.w3.org/ns/sosa/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 
-<rdf:Description rdf:about="http://idlab.ugent.be/conamo/sensors#BikeDevice_2692">
-	<rdf:type rdf:resource="http://idlab.ugent.be/conamo-vocab/sosa#ConamoDevice"/>
-	<conamo-sosa:UUID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2692</conamo-sosa:UUID>
+<rdf:Description rdf:about="http://idlab.ugent.be/cycling/sensors#BikeDevice_2692">
+	<rdf:type rdf:resource="http://idlab.ugent.be/cycling-vocab/sosa#CyclingDevice"/>
+	<cycling-sosa:UUID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2692</cycling-sosa:UUID>
 </rdf:Description>
 
-<rdf:Description rdf:about="http://idlab.ugent.be/conamo/sensors#HeartRateSensor_2692">
-	<rdf:type rdf:resource="http://idlab.ugent.be/conamo-vocab/sosa#HeartRateSensor"/>
-	<sosa:isHostedBy rdf:resource="http://idlab.ugent.be/conamo/sensors#BikeDevice_2692"/>
-	<sosa:observes rdf:resource="http://idlab.ugent.be/conamo-vocab/sosa#_HeartRate"/>
+<rdf:Description rdf:about="http://idlab.ugent.be/cycling/sensors#HeartRateSensor_2692">
+	<rdf:type rdf:resource="http://idlab.ugent.be/cycling-vocab/sosa#HeartRateSensor"/>
+	<sosa:isHostedBy rdf:resource="http://idlab.ugent.be/cycling/sensors#BikeDevice_2692"/>
+	<sosa:observes rdf:resource="http://idlab.ugent.be/cycling-vocab/sosa#_HeartRate"/>
 </rdf:Description>
 
-<rdf:Description rdf:about="http://idlab.ugent.be/conamo/sensors#SpeedSensor_2692">
-	<rdf:type rdf:resource="http://idlab.ugent.be/conamo-vocab/sosa#SpeedSensor"/>
-	<sosa:isHostedBy rdf:resource="http://idlab.ugent.be/conamo/sensors#BikeDevice_2692"/>
-	<sosa:observes rdf:resource="http://idlab.ugent.be/conamo-vocab/sosa#_Speed"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://idlab.ugent.be/conamo/sensors#GPSSensor_2692">
-	<rdf:type rdf:resource="http://idlab.ugent.be/conamo-vocab/sosa#GPSSensor"/>
-	<sosa:isHostedBy rdf:resource="http://idlab.ugent.be/conamo/sensors#BikeDevice_2692"/>
-	<sosa:observes rdf:resource="http://idlab.ugent.be/conamo-vocab/sosa#_Location"/>
+<rdf:Description rdf:about="http://idlab.ugent.be/cycling/sensors#SpeedSensor_2692">
+	<rdf:type rdf:resource="http://idlab.ugent.be/cycling-vocab/sosa#SpeedSensor"/>
+	<sosa:isHostedBy rdf:resource="http://idlab.ugent.be/cycling/sensors#BikeDevice_2692"/>
+	<sosa:observes rdf:resource="http://idlab.ugent.be/cycling-vocab/sosa#_Speed"/>
 </rdf:Description>
 
 </rdf:RDF>

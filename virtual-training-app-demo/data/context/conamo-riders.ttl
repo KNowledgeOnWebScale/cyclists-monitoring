@@ -1,47 +1,47 @@
 
-@prefix conamo-sosa : <http://idlab.ugent.be/conamo-vocab/sosa#> .
-@prefix conamo-profile : <http://idlab.ugent.be/conamo-vocab/profile#> .
-@prefix riders : <http://idlab.ugent.be/conamo/riders#> .
-@prefix sensors : <http://idlab.ugent.be/conamo/sensors#> .
+@prefix cycling-sosa : <http://idlab.ugent.be/cycling-vocab/sosa#> .
+@prefix cycling-profile : <http://idlab.ugent.be/cycling-vocab/profile#> .
+@prefix riders : <http://idlab.ugent.be/cycling/riders#> .
+@prefix sensors : <http://idlab.ugent.be/cycling/sensors#> .
 
 @prefix schema : <http://schema.org/> .
 @prefix sosa : <http://www.w3.org/ns/sosa/> .
 @prefix xsd : <http://www.w3.org/2001/XMLSchema#> .
 
-riders:Rik_Limpens conamo-profile:monitoredBy sensors:BikeDevice_2692 .
-riders:Rik_Limpens schema:givenName "Rik"^^xsd:string .
-riders:Rik_Limpens schema:familyName "Limpens"^^xsd:string .
-riders:Rik_Limpens a conamo-profile:Cyclist .
-riders:Rik_Limpens schema:gender schema:Male .
-riders:Rik_Limpens schema:birthDate "1994-01-01"^^xsd:date .
+riders:John_Green cycling-profile:monitoredBy sensors:BikeDevice_2692 .
+riders:John_Green schema:givenName "John"^^xsd:string .
+riders:John_Green schema:familyName "Green"^^xsd:string .
+riders:John_Green a cycling-profile:Cyclist .
+riders:John_Green schema:gender schema:Male .
+riders:John_Green schema:birthDate "1998-04-08"^^xsd:date .
 
-riders:Rik_Limpens conamo-profile:hasThreshold [ a conamo-profile:RestingHeartRate;
-                                                   schema:value "59"^^xsd:float;
-                                                   conamo-profile:isLowerBoundOf conamo-profile:_Recovery ] .
-riders:Rik_Limpens conamo-profile:hasThreshold [ a conamo-profile:LongSlowDistanceThreshold ;
-                                                   schema:value "144"^^xsd:float ;
-                                                   conamo-profile:isUpperBoundOf conamo-profile:_Recovery ;
-                                                   conamo-profile:isLowerBoundOf conamo-profile:_LongSlowDistance ] .
-riders:Rik_Limpens conamo-profile:hasThreshold [ a conamo-profile:ExtensiveEnduranceThreshold ; 
-                                                   schema:value "150"^^xsd:float ;
-                                                   conamo-profile:isUpperBoundOf conamo-profile:_LongSlowDistance ;
-                                                   conamo-profile:isLowerBoundOf conamo-profile:_ExtensiveEndurance ] .
-riders:Rik_Limpens conamo-profile:hasThreshold [ a conamo-profile:TempoEnduranceThreshold ;
-                                                   schema:value "158"^^xsd:float ;
-                                                   conamo-profile:isUpperBoundOf conamo-profile:_ExtensiveEndurance ;
-                                                   conamo-profile:isLowerBoundOf conamo-profile:_TempoEndurance ] .
-riders:Rik_Limpens conamo-profile:hasThreshold [ a conamo-profile:AerobicThreshold ;
-                                                   schema:value "169"^^xsd:float ;
-                                                   conamo-profile:isUpperBoundOf conamo-profile:_TempoEndurance ;
-                                                   conamo-profile:isLowerBoundOf conamo-profile:_BlockTraining ] .
-riders:Rik_Limpens conamo-profile:hasThreshold [ a conamo-profile:ExtensiveIntervalThreshold ;
+riders:John_Green cycling-profile:hasThreshold [ a cycling-profile:RestingHeartRate;
+                                                   schema:value "62"^^xsd:float;
+                                                   cycling-profile:isLowerBoundOf cycling-profile:_Recovery ] .
+riders:John_Green cycling-profile:hasThreshold [ a cycling-profile:LongSlowDistanceThreshold ;
+                                                   schema:value "145"^^xsd:float ;
+                                                   cycling-profile:isUpperBoundOf cycling-profile:_Recovery ;
+                                                   cycling-profile:isLowerBoundOf cycling-profile:_LongSlowDistance ] .
+riders:John_Green cycling-profile:hasThreshold [ a cycling-profile:ExtensiveEnduranceThreshold ; 
+                                                   schema:value "151"^^xsd:float ;
+                                                   cycling-profile:isUpperBoundOf cycling-profile:_LongSlowDistance ;
+                                                   cycling-profile:isLowerBoundOf cycling-profile:_ExtensiveEndurance ] .
+riders:John_Green cycling-profile:hasThreshold [ a cycling-profile:TempoEnduranceThreshold ;
+                                                   schema:value "159"^^xsd:float ;
+                                                   cycling-profile:isUpperBoundOf cycling-profile:_ExtensiveEndurance ;
+                                                   cycling-profile:isLowerBoundOf cycling-profile:_TempoEndurance ] .
+riders:John_Green cycling-profile:hasThreshold [ a cycling-profile:AerobicThreshold ;
+                                                   schema:value "170"^^xsd:float ;
+                                                   cycling-profile:isUpperBoundOf cycling-profile:_TempoEndurance ;
+                                                   cycling-profile:isLowerBoundOf cycling-profile:_BlockTraining ] .
+riders:John_Green cycling-profile:hasThreshold [ a cycling-profile:ExtensiveIntervalThreshold ;
                                                    schema:value "178"^^xsd:float ;
-                                                   conamo-profile:isUpperBoundOf conamo-profile:_BlockTraining ;
-                                                   conamo-profile:isLowerBoundOf conamo-profile:_ExtensiveInterval ] .
-riders:Rik_Limpens conamo-profile:hasThreshold [ a conamo-profile:AnaerobicThreshold ;
+                                                   cycling-profile:isUpperBoundOf cycling-profile:_BlockTraining ;
+                                                   cycling-profile:isLowerBoundOf cycling-profile:_ExtensiveInterval ] .
+riders:John_Green cycling-profile:hasThreshold [ a cycling-profile:AnaerobicThreshold ;
                                                    schema:value "185"^^xsd:float ;
-                                                   conamo-profile:isUpperBoundOf conamo-profile:_ExtensiveInterval ;
-                                                   conamo-profile:isLowerBoundOf conamo-profile:_Anaerobic ] .
-riders:Rik_Limpens conamo-profile:hasThreshold [ a conamo-profile:MaximumHeartRate;
+                                                   cycling-profile:isUpperBoundOf cycling-profile:_ExtensiveInterval ;
+                                                   cycling-profile:isLowerBoundOf cycling-profile:_Anaerobic ] .
+riders:John_Green cycling-profile:hasThreshold [ a cycling-profile:MaximumHeartRate;
                                                    schema:value "200"^^xsd:float;
-                                                   conamo-profile:isUpperBoundOf conamo-profile:_Anaerobic ] .
+                                                   cycling-profile:isUpperBoundOf cycling-profile:_Anaerobic ] .

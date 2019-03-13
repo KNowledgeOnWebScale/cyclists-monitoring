@@ -1,4 +1,4 @@
-@prefix : <http://idlab.ugent.be/conamo-vocab/profile#> .
+@prefix : <http://idlab.ugent.be/cycling-vocab/profile#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -9,54 +9,54 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix terms: <http://purl.org/dc/terms/> .
 @prefix schema: <http://schema.org/> .
-@prefix conamo-sosa: <http://idlab.ugent.be/conamo-vocab/sosa#> .
-@base <http://idlab.ugent.be/conamo-vocab/profile#> .
+@prefix cycling-sosa: <http://idlab.ugent.be/cycling-vocab/sosa#> .
+@base <http://idlab.ugent.be/cycling-vocab/profile#> .
 
-<http://idlab.ugent.be/conamo-vocab/profile#> rdf:type owl:Ontology ;
-                                               owl:imports conamo-sosa: .
+<http://idlab.ugent.be/cycling-vocab/profile#> rdf:type owl:Ontology ;
+                                               owl:imports cycling-sosa: .
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://idlab.ugent.be/conamo-vocab/profile#basedOnProperty
+###  http://idlab.ugent.be/cycling-vocab/profile#basedOnProperty
 :basedOnProperty rdf:type owl:ObjectProperty .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#hasPhysiologicalProfileParameter
+###  http://idlab.ugent.be/cycling-vocab/profile#hasPhysiologicalProfileParameter
 :hasPhysiologicalProfileParameter rdf:type owl:ObjectProperty ;
                                   rdfs:subPropertyOf owl:topObjectProperty ;
                                   rdfs:domain :Athlete ;
                                   rdfs:range :PhysiologicalProfileParameter .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#hasThreshold
+###  http://idlab.ugent.be/cycling-vocab/profile#hasThreshold
 :hasThreshold rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf :hasPhysiologicalProfileParameter ;
               rdfs:domain :Athlete ;
               rdfs:range :Threshold .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#isBoundOf
+###  http://idlab.ugent.be/cycling-vocab/profile#isBoundOf
 :isBoundOf rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
            rdfs:domain :Threshold ;
            rdfs:range :TrainingZone .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#isLowerBoundOf
+###  http://idlab.ugent.be/cycling-vocab/profile#isLowerBoundOf
 :isLowerBoundOf rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf :isBoundOf .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#isMonitoredBy
+###  http://idlab.ugent.be/cycling-vocab/profile#isMonitoredBy
 :isMonitoredBy rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf owl:topObjectProperty ;
                rdfs:domain :Athlete ;
-               rdfs:range conamo-sosa:ConamoDevice .
+               rdfs:range cycling-sosa:CyclingDevice .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#isUpperBoundOf
+###  http://idlab.ugent.be/cycling-vocab/profile#isUpperBoundOf
 :isUpperBoundOf rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf :isBoundOf .
 
@@ -65,7 +65,7 @@
 #    Classes
 #################################################################
 
-###  http://idlab.ugent.be/conamo-vocab/profile#AerobicThreshold
+###  http://idlab.ugent.be/cycling-vocab/profile#AerobicThreshold
 :AerobicThreshold rdf:type owl:Class ;
                   rdfs:subClassOf :HeartRateThreshold ,
                                   [ rdf:type owl:Restriction ;
@@ -81,14 +81,14 @@
                   rdfs:label "Aerobic Threshold" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#Anaerobic
+###  http://idlab.ugent.be/cycling-vocab/profile#Anaerobic
 :Anaerobic rdf:type owl:Class ;
            rdfs:subClassOf :HeartRateTrainingZone ;
            rdfs:comment "You are cycling at maximum intensity. This is the zone for anaerobic training stimuli, where you are training 'in the red zone'. Production of lactic acid is high, and recovery can take up to 48-72 hours." ;
            rdfs:label "Anaerobic" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#AnaerobicThreshold
+###  http://idlab.ugent.be/cycling-vocab/profile#AnaerobicThreshold
 :AnaerobicThreshold rdf:type owl:Class ;
                     rdfs:subClassOf :HeartRateThreshold ,
                                     [ rdf:type owl:Restriction ;
@@ -104,31 +104,31 @@
                     rdfs:label "Anaerobic Threshold" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#Athlete
+###  http://idlab.ugent.be/cycling-vocab/profile#Athlete
 :Athlete rdf:type owl:Class ;
          rdfs:subClassOf schema:Person .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#BlockTraining
+###  http://idlab.ugent.be/cycling-vocab/profile#BlockTraining
 :BlockTraining rdf:type owl:Class ;
                rdfs:subClassOf :HeartRateTrainingZone ;
                rdfs:comment "You are cycling in between your aerobic and anaerobic threshold. The effort can be maintained for quite a long time, but only if sufficient energy reserves (carbohydrates) are available. Block training is quite hard." ;
                rdfs:label "Block Training" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#Cyclist
+###  http://idlab.ugent.be/cycling-vocab/profile#Cyclist
 :Cyclist rdf:type owl:Class ;
          rdfs:subClassOf :Athlete .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#ExtensiveEndurance
+###  http://idlab.ugent.be/cycling-vocab/profile#ExtensiveEndurance
 :ExtensiveEndurance rdf:type owl:Class ;
                     rdfs:subClassOf :HeartRateTrainingZone ;
                     rdfs:comment "You are cycling at an intensity at which you finish off shorter endurance training (maximum 4 hours). You are cycling at a higher tempo, stimulating your endurance (stamina). Your fat burning is already heavily in action." ;
                     rdfs:label "Extensive Endurance" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#ExtensiveEnduranceThreshold
+###  http://idlab.ugent.be/cycling-vocab/profile#ExtensiveEnduranceThreshold
 :ExtensiveEnduranceThreshold rdf:type owl:Class ;
                              rdfs:subClassOf :HeartRateThreshold ,
                                              [ rdf:type owl:Restriction ;
@@ -143,14 +143,14 @@
                                              ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#ExtensiveInterval
+###  http://idlab.ugent.be/cycling-vocab/profile#ExtensiveInterval
 :ExtensiveInterval rdf:type owl:Class ;
                    rdfs:subClassOf :HeartRateTrainingZone ;
                    rdfs:comment "You are cycling at an intensity which is just below the muscle acidification threshold. This can be sustained for at most 30 to 60 minutes. This training zone is very race specific and is typically searched for in the run-up to the racing season." ;
                    rdfs:label "Extensive Interval" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#ExtensiveIntervalThreshold
+###  http://idlab.ugent.be/cycling-vocab/profile#ExtensiveIntervalThreshold
 :ExtensiveIntervalThreshold rdf:type owl:Class ;
                             rdfs:subClassOf :HeartRateThreshold ,
                                             [ rdf:type owl:Restriction ;
@@ -165,12 +165,12 @@
                                             ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#HeartRateThreshold
+###  http://idlab.ugent.be/cycling-vocab/profile#HeartRateThreshold
 :HeartRateThreshold rdf:type owl:Class ;
                     rdfs:subClassOf :Threshold ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :basedOnProperty ;
-                                      owl:someValuesFrom conamo-sosa:HeartRate
+                                      owl:someValuesFrom cycling-sosa:HeartRate
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :isLowerBoundOf ;
@@ -184,23 +184,23 @@
                                     ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#HeartRateTrainingZone
+###  http://idlab.ugent.be/cycling-vocab/profile#HeartRateTrainingZone
 :HeartRateTrainingZone rdf:type owl:Class ;
                        rdfs:subClassOf :TrainingZone ,
                                        [ rdf:type owl:Restriction ;
                                          owl:onProperty :basedOnProperty ;
-                                         owl:someValuesFrom conamo-sosa:HeartRate
+                                         owl:someValuesFrom cycling-sosa:HeartRate
                                        ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#LongSlowDistance
+###  http://idlab.ugent.be/cycling-vocab/profile#LongSlowDistance
 :LongSlowDistance rdf:type owl:Class ;
                   rdfs:subClassOf :HeartRateTrainingZone ;
                   rdfs:comment "You are cycling at an intensity at which you finish off (very) long and calm endurance training (of 5 hours and more). It is about long distance and slow tempo. This type of training stimulates the aerobic performance capacity and helps to improve your basic condition." ;
                   rdfs:label "Long Slow Distance" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#LongSlowDistanceThreshold
+###  http://idlab.ugent.be/cycling-vocab/profile#LongSlowDistanceThreshold
 :LongSlowDistanceThreshold rdf:type owl:Class ;
                            rdfs:subClassOf :HeartRateThreshold ,
                                            [ rdf:type owl:Restriction ;
@@ -215,7 +215,7 @@
                                            ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#MaximumHeartRate
+###  http://idlab.ugent.be/cycling-vocab/profile#MaximumHeartRate
 :MaximumHeartRate rdf:type owl:Class ;
                   rdfs:subClassOf :HeartRateThreshold ,
                                   [ rdf:type owl:Restriction ;
@@ -230,7 +230,7 @@
                   rdfs:label "Maximum Heart Rate" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#PhysiologicalProfileParameter
+###  http://idlab.ugent.be/cycling-vocab/profile#PhysiologicalProfileParameter
 :PhysiologicalProfileParameter rdf:type owl:Class ;
                                rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                  owl:onProperty :basedOnProperty ;
@@ -243,14 +243,14 @@
                                                ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#Recovery
+###  http://idlab.ugent.be/cycling-vocab/profile#Recovery
 :Recovery rdf:type owl:Class ;
           rdfs:subClassOf :HeartRateTrainingZone ;
           rdfs:comment "In recovery, the intensity of the effort is very low. The only goal of cycling at this intensity is to recover from previous efforts done on training or in a cycling race." ;
           rdfs:label "Recovery" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#RestingHeartRate
+###  http://idlab.ugent.be/cycling-vocab/profile#RestingHeartRate
 :RestingHeartRate rdf:type owl:Class ;
                   rdfs:subClassOf :HeartRateThreshold ,
                                   [ rdf:type owl:Restriction ;
@@ -265,19 +265,19 @@
                   rdfs:label "Resting Heart Rate" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#Runner
+###  http://idlab.ugent.be/cycling-vocab/profile#Runner
 :Runner rdf:type owl:Class ;
         rdfs:subClassOf :Athlete .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#TempoEndurance
+###  http://idlab.ugent.be/cycling-vocab/profile#TempoEndurance
 :TempoEndurance rdf:type owl:Class ;
                 rdfs:subClassOf :HeartRateTrainingZone ;
                 rdfs:comment "You are cycling at an intensity at which your fat metabolism is fully in action. Energy provision is increasing due to the combustion of sugars. Tempo endurance training is continuous in time, but is typically perceived as being somewhat hard." ;
                 rdfs:label "Tempo Endurance" .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#TempoEnduranceThreshold
+###  http://idlab.ugent.be/cycling-vocab/profile#TempoEnduranceThreshold
 :TempoEnduranceThreshold rdf:type owl:Class ;
                          rdfs:subClassOf :HeartRateThreshold ,
                                          [ rdf:type owl:Restriction ;
@@ -292,7 +292,7 @@
                                          ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#Threshold
+###  http://idlab.ugent.be/cycling-vocab/profile#Threshold
 :Threshold rdf:type owl:Class ;
            rdfs:subClassOf :PhysiologicalProfileParameter ,
                            [ rdf:type owl:Restriction ;
@@ -307,7 +307,7 @@
                            ] .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#TrainingZone
+###  http://idlab.ugent.be/cycling-vocab/profile#TrainingZone
 :TrainingZone rdf:type owl:Class ;
               rdfs:subClassOf [ rdf:type owl:Restriction ;
                                 owl:onProperty :basedOnProperty ;
@@ -323,37 +323,37 @@ schema:Person rdf:type owl:Class .
 #    Individuals
 #################################################################
 
-###  http://idlab.ugent.be/conamo-vocab/profile#_Anaerobic
+###  http://idlab.ugent.be/cycling-vocab/profile#_Anaerobic
 :_Anaerobic rdf:type owl:NamedIndividual ,
                      :Anaerobic .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#_BlockTraining
+###  http://idlab.ugent.be/cycling-vocab/profile#_BlockTraining
 :_BlockTraining rdf:type owl:NamedIndividual ,
                          :BlockTraining .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#_ExtensiveEndurance
+###  http://idlab.ugent.be/cycling-vocab/profile#_ExtensiveEndurance
 :_ExtensiveEndurance rdf:type owl:NamedIndividual ,
                               :ExtensiveEndurance .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#_ExtensiveInterval
+###  http://idlab.ugent.be/cycling-vocab/profile#_ExtensiveInterval
 :_ExtensiveInterval rdf:type owl:NamedIndividual ,
                              :ExtensiveInterval .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#_LongSlowDistance
+###  http://idlab.ugent.be/cycling-vocab/profile#_LongSlowDistance
 :_LongSlowDistance rdf:type owl:NamedIndividual ,
                             :LongSlowDistance .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#_Recovery
+###  http://idlab.ugent.be/cycling-vocab/profile#_Recovery
 :_Recovery rdf:type owl:NamedIndividual ,
                     :Recovery .
 
 
-###  http://idlab.ugent.be/conamo-vocab/profile#_TempoEndurance
+###  http://idlab.ugent.be/cycling-vocab/profile#_TempoEndurance
 :_TempoEndurance rdf:type owl:NamedIndividual ,
                           :TempoEndurance .
 

@@ -5,8 +5,8 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX sosa: <http://www.w3.org/ns/sosa/>
 PREFIX schema: <http://schema.org/>
 
-PREFIX conamo-sosa: <http://idlab.ugent.be/conamo-vocab/sosa#>
-PREFIX conamo-profile: <http://idlab.ugent.be/conamo-vocab/profile#>
+PREFIX cycling-sosa: <http://idlab.ugent.be/cycling-vocab/sosa#>
+PREFIX cycling-profile: <http://idlab.ugent.be/cycling-vocab/profile#>
 
 SELECT
     ?uuid
@@ -15,14 +15,14 @@ SELECT
     ?sensor
     ?time
     ?value
-FROM STREAM <http://idlab.ugent.be/conamo/stream> [RANGE 5s STEP 1s]
-FROM <http://localhost:8177/conamo-riders.rdf>
-FROM <http://localhost:8177/conamo-sensors.rdf>
+FROM STREAM <http://idlab.ugent.be/cycling/stream> [RANGE 5s STEP 1s]
+FROM <http://localhost:8177/cycling-riders.rdf>
+FROM <http://localhost:8177/cycling-sensors.rdf>
 WHERE { 
     ?o sosa:hasResult ?ov .
     ?o sosa:resultTime ?time .
     
-    ?ov rdf:type conamo-sosa:QuantityObservationValue .
+    ?ov rdf:type cycling-sosa:QuantityObservationValue .
     ?ov schema:value ?value .
     
     {
@@ -30,14 +30,14 @@ WHERE {
         WHERE {
             ?x sosa:madeBySensor ?sensor .
             ?x sosa:hasResult ?xv .
-            ?xv rdf:type conamo-sosa:QuantityObservationValue .
+            ?xv rdf:type cycling-sosa:QuantityObservationValue .
         }
         GROUP BY ?sensor
     }
     
     ?sensor sosa:isHostedBy ?device .
-    ?device conamo-sosa:UUID ?uuid .
-    ?athlete conamo-profile:monitoredBy ?device .
+    ?device cycling-sosa:UUID ?uuid .
+    ?athlete cycling-profile:monitoredBy ?device .
     ?athlete schema:givenName ?firstName .
     ?athlete schema:familyName ?lastName .
     
