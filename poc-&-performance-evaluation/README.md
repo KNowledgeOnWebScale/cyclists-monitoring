@@ -42,6 +42,10 @@ To perform a simulation of sensor observations, the [`push_heart_rates.sh`](push
 
 For each iteration, a realistic random heart rate value is generated and considered as a heart rate sensor observation. Using the [`push_heart_rate.sh`](push_heart_rate.sh) script, this observation is then substituted in the JSON-LD template for a heart rate observation ([`heart_rate.template`](heart_rate.template)) and then posted on the C-SPARQL cycling stream. This script should be called with the right arguments for each rider to perform a simulation of heart rate observations. Then the C-SPARQL logs can be used to process the generated measurements, as described in the paper.
  
+## CONAMO project
+
+This research is largely conducted as a part of the imec ICON project [CONAMO](https://www.imec-int.com/en/what-we-offer/research-portfolio/conamo) (CONtinuous Athlete MOnitoring). CONAMO is funded by imec, VLAIO, Rombit, Energy Lab and VRT.
+
 ## Contact
  
-In case of any remarks or questions, you can [create a GitHub issue](../../../issues/new) or send an email to mrdbrouw.DeBrouwer@UGent.be.
+The main contact person directly involved with this research is [Mathias De Brouwer](https://www.linkedin.com/in/mathiasdebrouwer/). In case of any remarks or questions, you can send an email to mrdbrouw.DeBrouwer@UGent.be or [create a GitHub issue](../../../issues/new).
