@@ -14,7 +14,7 @@ The code and data related to the proof-of-concept and performance evaluation, ar
 
 ### Personalized real-time cycling feedback during amateur training: a virtual training demo (2019)
 
-This paper has been submitted to the demo track of the [Extended Semantic Web Conference (ESWC) 2019](https://2019.eswc-conferences.org/) and is currently under review. This paper specifically focuses on the use case of an individual amateur cyclist that executes a training. The paper presents an architecture of a solution providing feedback to such a cyclists (based on the PoC presented in the previous publication), and demonstrates this solution with a tablet demo that allows a user to execute a virtual amateur cycling training.
+This paper has been accepted to the demo track of the [Extended Semantic Web Conference (ESWC) 2019](https://2019.eswc-conferences.org/). This paper specifically focuses on the use case of an individual amateur cyclist that executes a training. The paper presents an architecture of a solution providing feedback to such a cyclists (based on the PoC presented in the previous publication), and demonstrates this solution with a tablet demo that allows a user to execute a virtual amateur cycling training.
 
 The online demo page is available on [this link](https://ibcnservices.github.io/cyclists-monitoring/). The demo data (cycling ontology, context data, C-SPARQL queries) is available in the [`virtual-training-app-demo`](virtual-training-app-demo) folder.
 
